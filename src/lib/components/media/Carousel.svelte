@@ -44,16 +44,23 @@
     <Splide
         options={{
             lazyLoad: 'nearby',
-            rewind: true,
             drag: 'free',
-            autoplay: 'pause',
+			// type:"fade",
             width: '80vw',
             autoWidth: true,
+			snap:true,
+			// arrowPath:'m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z',
+			// wheel:true,
+			omitEnd: true,
+			// fixedHeight: '20rem',
+			// arrows:false,
+			pagination:false,
+			
         }}
         aria-label={playlist.playlistTitle}
     >
         {#each playlistItems as item (item.id)}
-            <SplideSlide class="h-60 aspect-video w-auto">
+            <SplideSlide class="h-60 w-100 aspect-video w-auto">
                 <div on:click={() => openVideo(item.snippet.resourceId.videoId)}>
                     <Card title={item.snippet.title} imgUrl={item.snippet.thumbnails.high.url} />
                 </div>
