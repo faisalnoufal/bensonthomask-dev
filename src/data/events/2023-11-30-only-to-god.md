@@ -2,7 +2,9 @@
 layout: event
 title: Only to God
 description: Believe in God
-date: 2023-11-20T06:31:26.418
+date: 2022-12-31 11:59:59 -0800
 thumbnail: /uploads/blank.png
+published: true
 ---
-asdfasdf asdfadsf 
+
+asdfasdf asdfadsf
