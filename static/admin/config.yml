@@ -3,15 +3,15 @@ backend:
   branch: main
   publish_mode: editorial_workflow
 
-media_folder: "static/uploads"
-public_folder: "/uploads"
+media_folder: 'static/uploads'
+public_folder: '/uploads'
 
 collections:
   - name: home
     label: Home Page
     files:
-      - name: "hero"
-        label: "Hero"
+      - name: 'hero'
+        label: 'Hero'
         file: src/data/home/hero.json
         media_library:
           folder_support: true
@@ -31,8 +31,8 @@ collections:
           - name: img
             label: Featured Photo
             widget: image
-      - name: "event"
-        label: "Event"
+      - name: 'event'
+        label: 'Event'
         file: src/data/home/event.json
         media_library:
           folder_support: true
@@ -49,8 +49,8 @@ collections:
           - name: img
             label: Featured Photo
             widget: image
-      - name: "story"
-        label: "Story"
+      - name: 'story'
+        label: 'Story'
         file: src/data/home/story.json
         media_library:
           folder_support: true
@@ -61,17 +61,17 @@ collections:
           - name: supTitle
             label: Super Title
             widget: string
-        
-  - label: "Story Cards"
-    name: "storyCards"
-    folder: "src/data/home/story"
+
+  - label: 'Story Cards'
+    name: 'storyCards'
+    folder: 'src/data/home/story'
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}-{{second}}"
+    slug: '{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}-{{second}}'
     fields:
-      - { label: "Featured Image", name: "imgUrl", widget: "image" }
-      - { label: "Poster Title", name: "posterTitle", widget: "string" }
-      - { label: "Poster Description", name: "posterDesc", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: 'Featured Image', name: 'imgUrl', widget: 'image' }
+      - { label: 'Poster Title', name: 'posterTitle', widget: 'string' }
+      - { label: 'Poster Description', name: 'posterDesc', widget: 'string' }
+      - { label: 'Date', name: 'date', widget: 'datetime' }
 
   - name: about
     label: About Page
@@ -97,7 +97,7 @@ collections:
           # - name: intro
           #   label: Intro
           #   widget: markdown
-            
+
           # - name: team
           #   label: Team
           #   widget: list
@@ -125,24 +125,25 @@ collections:
             widget: image
           - name: text
             label: Text
-            widget: string        
+            widget: string
           - name: playlistId
             label: Playlist ID
-            widget: string        
+            widget: string
 
-  - name: "events" # Used in routes, e.g., /admin/collections/blog
-    label: "Events" # Used in the UI
-    folder: "src/data/events" # The path to the folder where the documents are stored
+  - name: 'events' # Used in routes, e.g., /admin/collections/blog
+    label: 'Events' # Used in the UI
+    folder: 'src/data/events' # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
-      - {label: "Layout", name: "layout", widget: "hidden", default: "event"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'event' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Description', name: 'description', widget: 'string' }
+      # - {label: "Publish Date", name: "date", widget: "datetime"}
+      - { label: 'Featured Image', name: 'thumbnail', widget: 'image' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Published', name: 'published', widget: 'boolean', default: true }
+
       # - {label: "Rating (scale of 1-5)", name: "rating", widget: "number"}
   - name: auth
     label: Authentication
@@ -154,4 +155,3 @@ collections:
           - name: API_KEY
             label: API KEY
             widget: string
-  
