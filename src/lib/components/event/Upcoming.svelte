@@ -1,76 +1,46 @@
 <script lang="ts">
 	import type { Events } from '$lib/types';
+	import { formatDate } from '$lib/utils';
 
 	export let events: Events[];
-	import { formatDate } from '$lib/utils';
+	
 
 	console.log(events);
 </script>
 
-<section class="">
-	<div class="container px-6 py-10 mx-auto">
-		<div class="text-center">
-			<h1 class="text-2xl font-semibold text-bgc capitalize lg:text-3xl">Upcoming Events</h1>
 
-			<p class="max-w-lg mx-auto mt-4 text-gray-500">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veritatis sint autem nesciunt,
-				laudantium quia tempore delect
-			</p>
-		</div>
-
-		<div class="flex flex-wrap gap-8 mt-8">
-			{#each events as event}
-				<a href={`events/${event.slug}`}>
-					<img
-						class="relative z-10 object-cover w-full rounded-md h-96"
-						src={event.thumbnail}
-						alt=""
-					/>
-
-					<div
-						class="relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900"
-					>
-						<a
-							href={`events/${event.slug}`}
-							class="font-semibold text-gray-800 hover:underline dark:text-white md:text-xl"
-						>
-							{event.title}
-						</a>
-
-						<p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
-							{event.description}
-						</p>
-
-						<p class="mt-3 text-sm text-borderColor">{formatDate(event.date)}</p>
-					</div>
-				</a>
-			{/each}
-
-			<!-- <div>
-				<img
-					class="relative z-10 object-cover w-full rounded-md h-96"
-					src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-					alt=""
-				/>
-
-				<div
-					class="relative z-20 max-w-lg p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900"
-				>
-					<a
-						href="#"
-						class="font-semibold text-gray-800 hover:underline dark:text-white md:text-xl"
-					>
-						Est minim reprehenderit quis laboris eu velit.
-					</a>
-
-					<p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veritatis sint autem
-						nesciunt, laudantium quia tempore delect
-					</p>
-
-					<p class="mt-3 text-sm text-borderColor">20 October 2023</p>
-				</div>
-			</div> -->
-		</div>
-	</div>
+<section class="container mx-auto w-full">
+    <div class="w-full flex flex-wrap content-center justify-around mx-auto px-2 py-12 md:px-6">
+        <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
+            {#each events as event}
+                <a href={`events/${event.slug}`} class="p-4 mb-6 flex flex-col justify-center items-center max-w-sm mx-auto">
+                    <div class="h-56 w-80 rounded-lg shadow-md bg-cover bg-center" style={`background-image: url(${event.thumbnail})`}></div>
+                    <div class="w-70 -mt-10 shadow-lg rounded-lg overflow-hidden p-5 bg-purple-50 hover:bg-purple-500 hover:text-white">
+                        <div class="header-content inline-flex">
+                            <div class="category-badge flex-1 h-4 w-4 m rounded-full m-1 bg-purple-100 blink">
+                                <div class="h-2 w-2 rounded-full m-1 bg-purple-500"></div>
+                            </div>
+                            <div class="category-title font-medium">{formatDate(event.date)}</div>
+                        </div>
+                        <div class="mt-2">
+                            <h2 class="text-lg font-semibold">{event.title}</h2>
+                            <p class="mt-2 text-sm text-gray-500">{event.description}</p>
+                        </div>
+                    </div>
+                </a>
+            {/each}
+        </div>
+    </div>
 </section>
+
+
+<style>
+    @keyframes blink {
+        0%, 50%, 100% {
+            opacity: 1;
+        }
+        25%, 75% {
+            opacity: 0;
+        }
+    }
+</style>

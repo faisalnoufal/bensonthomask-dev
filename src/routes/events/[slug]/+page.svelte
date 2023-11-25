@@ -24,12 +24,12 @@
 	<meta property="og:title" content={data.meta.title} />
 </svelte:head>
 
-<article>
+<article class="text-white text-center mb-8">
 	<PageHeader title={data.meta.title} bgImg={data.meta.thumbnail} {bgColor} />
 	<!-- Title -->
 	<hgroup>
-		<h1>{data.meta.title}</h1>
-		<p>Published at {formatDate(data.meta.date)}</p>
+		<!-- <h1 class="text-amber-200"><b class="text-lg">{data.meta.title}</b></h1> -->
+		<p>Event Date: <b class="text-amber-200"> {formatDate(data.meta.date)} </b></p>
 	</hgroup>
 
 	<!-- Tags -->
@@ -40,7 +40,7 @@
 	</div> -->
 
 	<!-- Post -->
-	<div class="prose">
+	<div class="prose text-center mx-auto mt-4">
 		<svelte:component this={data.content} />
 	</div>
 </article>
@@ -51,13 +51,16 @@
 		margin-inline: auto;
 	}
 
+	h1, p {
+		color: white;
+	}
+
 	h1 {
 		text-transform: capitalize;
 	}
 
 	h1 + p {
 		margin-top: var(--size-2);
-		color: var(--text-2);
 	}
 
 	.tags {
@@ -69,5 +72,18 @@
 	.tags > * {
 		padding: var(--size-2) var(--size-3);
 		border-radius: var(--radius-round);
+	}
+
+	.prose {
+		text-align: center;
+		max-width: 80%; /* Limit width to 80% on desktop */
+		margin-bottom: var(--size-4); /* Bottom margin for gap */
+	}
+
+	@media (max-width: 768px) {
+		/* Media query for mobile devices */
+		.prose {
+			max-width: 90%; /* Limit width to 90% on mobile */
+		}
 	}
 </style>

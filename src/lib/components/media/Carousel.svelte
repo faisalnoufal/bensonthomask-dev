@@ -39,7 +39,7 @@
 
 </script>
 
-<div class="flex flex-col justify-center items-center overflow-hidden mb-8">
+<div class="flex flex-col justify-center items-center overflow-hidden mb-12">
     <h1 class="text-bgc mx-auto my-2 text-xl font-semibold font-lora">{playlist.playlistTitle}</h1>
     <Splide
         options={{
