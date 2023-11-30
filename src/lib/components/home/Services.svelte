@@ -49,7 +49,7 @@
 	];
 
 	var title = 'Magna culpa enim occaecat officia in esse.';
-	var btnText = 'Get Started Today';
+	var btnText = 'Get Started Now';
 	var desc =
 		'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut vero aliquid sint distinctio.';
 </script>

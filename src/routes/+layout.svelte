@@ -2,6 +2,19 @@
 	import Nav from '$lib/components/global/Nav.svelte';
 	import Footer from '$lib/components/home/Footer.svelte';
 	import '../app.postcss';
+  import { onMount } from 'svelte';
+
+  onMount(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.instagram.com/embed.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  });
+
 </script>
 
 <div

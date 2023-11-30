@@ -2,7 +2,7 @@
 	import { Splide, SplideSlide } from '@splidejs/svelte-splide';
 	import '@splidejs/svelte-splide/css';
 	import { onMount, createEventDispatcher } from 'svelte';
-	import Card from './Card.svelte';
+	import ShortsCard from './ShortsCard.svelte';
 	import { API_KEY as apiKey } from '$lib/auth/key';
 
 	export let idx: number;
@@ -62,7 +62,8 @@
 		{#each playlistItems as item (item.id)}
 			<SplideSlide class="h-60 w-100 aspect-video w-auto">
 				<div on:click={() => openVideo(item.snippet.resourceId.videoId)}>
-					<Card title={item.snippet.title} imgUrl={item.snippet.thumbnails.high.url} />
+					<!-- <ShortsCard title={item.snippet.title} imgUrl={item.snippet.thumbnails.high.url} /> -->
+					<ShortsCard title={item.snippet.title} imgUrl={item.snippet.thumbnails.high.url} />
 				</div>
 			</SplideSlide>
 		{/each}

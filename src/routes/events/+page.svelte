@@ -15,5 +15,5 @@
 	<title>Events | Benson Thomas</title>
 </svelte:head>
 
-<PageHeader title="Events" bgColor="#111" textColor="#f1f1f1" centerTitle {bgImg} />
+<!-- <PageHeader title="Events" bgColor="#111" textColor="#f1f1f1" centerTitle {bgImg} /> -->
 <Upcoming {events} />

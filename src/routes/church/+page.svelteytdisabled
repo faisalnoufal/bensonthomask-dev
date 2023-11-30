@@ -1,0 +1,109 @@
+<script lang="ts">
+	import { API_KEY as apiKey } from '$lib/auth/key';
+	import { onMount } from 'svelte';
+  
+	let playlistVideos: { videoId: string }[] = [];
+	let churchReels: string[] = [
+	  'https://www.facebook.com/reel/1540221803185787',
+	  'https://www.facebook.com/reel/1201671043674926',
+	  'https://www.facebook.com/reel/163908496359124',
+	  'https://www.facebook.com/benson.thomas.9/videos/1392526778231644',
+	  'https://www.facebook.com/benson.thomas.9/videos/552959363519904'
+	];
+	let selectedVideo: string | null = null;
+	const playlistId = 'PLUhJyvkLp-rOWUDtYfsacytiHts2TV2mY';
+  
+	// Fetch videos from the specified playlist
+	async function fetchPlaylistVideos() {
+	  try {
+		const response = await fetch(
+		  `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=12`
+		);
+  
+		if (!response.ok) {
+		  throw new Error('Failed to fetch playlist videos');
+		}
+  
+		const data: any = await response.json();
+  
+		if (data.items?.length > 0) {
+		  playlistVideos = data.items.map((item: any) => ({
+			videoId: item.snippet.resourceId.videoId
+		  }));
+		}
+	  } catch (error) {
+		console.error('Error fetching playlist videos:', error);
+	  }
+	}
+  
+	// Fetch playlist videos when the component mounts
+	onMount(fetchPlaylistVideos);
+  
+	function openVideo(videoId: string) {
+	  selectedVideo = videoId;
+	}
+  </script>
+
+<h1 class="font-semibold p-12 md:pl-28 text-bgc text-xl md:text-2xl">
+	Church Fellowship &amp; Ministry [Reels]
+  </h1>
+  <div class="flex flex-wrap justify-center mx-4 mb-4 lg:mx-24">
+	{#each churchReels as reel}
+	  <div class="m-2 w-auto h-auto md:w-[24rem] video-card aspect-video">
+		<iframe
+		  title=""
+		  class="rounded-lg w-full"
+		  height="250"
+		  src={reel}
+		  frameborder="0"
+		  allowfullscreen
+		/>
+	  </div>
+	{/each}
+  </div>
+  
+  <!-- <h1 class="my-10 text-2xl md:text-4xl text-bgc font-bold text-center">What we have for you</h1>
+  <p class="w-5/6 md:w-1/2 text-sm -mt-5 text-bgc/80 mb-10 text-center mx-auto">
+	Excepteur dolor id aliqua occaecat ipsum. Nostrud culpa labore velit nisi et amet velit nisi minim officia dolore.
+	Consequat laborum commodo consectetur consectetur ullamco et aliqua irure duis sunt anim minim.
+  </p> -->
+  
+  <!-- <div class="flex flex-wrap justify-center mx-4 my-10">
+	{#if playlistVideos.length > 0}
+	  {#each playlistVideos as video}
+		<div class="m-2 w-auto h-auto md:w-80">
+		  <div class="relative">
+			<img
+			  alt="Video Thumbnail"
+			  src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`}
+			  class="rounded-lg cursor-pointer"
+			  on:click={() => openVideo(video.videoId)}
+			/>
+		  </div>
+		</div>
+	  {/each}
+	{:else}
+	  <p>No videos available</p>
+	{/if}
+  </div> -->
+  
+  
+  
+  <!-- {#if selectedVideo !== null}
+	<div class="fixed w-full h-full bg-[rgba(0,0,0,0.8)] flex flex-col transition-all duration-200 items-center z-40 justify-center left-0 top-0">
+	  <button
+		class="absolute top-4 right-4 p-2 rounded-full bg-gray-800 text-white"
+		on:click={() => (selectedVideo = null)}
+	  >
+		Close
+	  </button>
+	  <iframe
+		title=""
+		class="w-4/5 relative rounded-lg transition-all duration-200 aspect-video lg:h-[70%] border-[none]"
+		src={`https://www.youtube.com/embed/${selectedVideo}`}
+		frameborder="0"
+		allowfullscreen
+	  />
+	</div>
+  {/if} -->
+  

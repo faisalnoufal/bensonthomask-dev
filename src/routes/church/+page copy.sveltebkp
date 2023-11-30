@@ -1,0 +1,131 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import { API_KEY as apiKey } from '$lib/auth/key';
+  
+	export let data;
+	const text = data.church.text;
+	const imgUrl = data.church.imgUrl;
+	const playlistId = data.church.playlistId; // ID of the YouTube playlist
+	type YoutubePlaylistItem = {
+	  id: string;
+	  snippet: {
+		title: string;
+		thumbnails: {
+		  default: {
+			url: string;
+		  };
+		};
+		resourceId: {
+		  videoId: string;
+		};
+	  };
+	};
+	let playlistItems: YoutubePlaylistItem[] = [];
+	let reels = [
+	  'https://www.facebook.com/reel/1540221803185787',
+	  'https://www.facebook.com/reel/1201671043674926',
+	  'https://www.facebook.com/reel/163908496359124',
+	  'https://www.facebook.com/benson.thomas.9/videos/1392526778231644',
+	  'https://www.facebook.com/benson.thomas.9/videos/552959363519904'
+	];
+  
+	onMount(async () => {
+	  const response = await fetch(
+		`https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=10`
+	  );
+	  const data = await response.json();
+	  playlistItems = data.items;
+	});
+  
+	function getYoutubeEmbedUrl(videoId: unknown) {
+	  return `https://www.youtube.com/embed/${videoId}`;
+	}
+  
+	let selectedVideo = null;
+  
+	function openVideo(videoId) {
+	  selectedVideo = videoId;
+	}
+  
+	function closeVideo() {
+	  selectedVideo = null;
+	}
+  </script>
+  
+  <svelte:head>
+	<title>Church | Benson Thomas</title>
+  </svelte:head>
+  
+  <div
+	class="m-12 mx-auto mt-1 rounded-2xl max-h-screen max-w-screen-xl shadow-lg w-full bg-center bg-cover h-[38rem]"
+	style="background-image: url({imgUrl});"
+  >
+	<div class="flex items-center justify-center w-full h-full bg-gray-900/40">
+	  <div
+		class="text-center w-full h-full backdrop-blur-sm flex flex-col justify-center items-center"
+	  >
+		<h1 class="text-3xl w-2/3 font-semibold text-white lg:text-4xl font-lora">
+		  {text}
+		</h1>
+	  </div>
+	</div>
+  </div>
+  
+  <h1 class="font-semibold p-12 md:pl-28 text-bgc text-xl md:text-2xl">
+	Church Fellowship &amp; Ministry
+  </h1>
+  
+ <!-- ... (previous code) ... -->
+
+<div class="flex flex-wrap justify-center mx-4 lg:mx-24">
+	{#each playlistItems as item (item.id)}
+	  <div class="m-2 w-auto h-auto md:w-[24rem] video-card aspect-video">
+		<img
+		  src={`https://img.youtube.com/vi/${item.snippet.resourceId.videoId}/maxresdefault.jpg`}
+		  alt={item.snippet.title}
+		  class="rounded-lg w-full cursor-pointer"
+		  on:click={() => openVideo(item.snippet.resourceId.videoId)}
+		/>
+	  </div>
+	{/each}
+  </div>
+  
+  <!-- Modal for displaying selected video -->
+  {#if selectedVideo}
+	<div class="fixed inset-0 overflow-y-auto">
+	  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+		<div class="fixed inset-0 transition-opacity" aria-hidden="true" on:click={closeVideo}>
+		  <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+		</div>
+  
+		<span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true"></span>
+  
+		<div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+		  <iframe title="" class="w-full" height="500" src={getYoutubeEmbedUrl(selectedVideo)} frameborder="0" allowfullscreen></iframe>
+		</div>
+	  </div>
+	</div>
+  {/if}
+  
+  <!-- ... (remaining code) ... -->
+  
+  
+  <h1 class="font-semibold p-12 md:pl-28 text-bgc text-xl md:text-2xl">
+	Church Fellowship &amp; Ministry [Reels]
+  </h1>
+  
+  <div class="flex flex-wrap justify-center mx-4 mb-4 lg:mx-24">
+	{#each reels as item}
+	<div class="m-2 w-auto h-auto md:w-[24rem] video-card aspect-video">
+	  <iframe
+		title=""
+		class="rounded-lg w-full"
+		height="250"
+		src={item}
+		frameborder="0"
+		allowfullscreen
+	  />
+	</div>
+	{/each}
+  </div>
+  
