@@ -1,54 +1,8 @@
-<!-- <script lang="ts">
-	import { API_KEY as apiKey } from '$lib/auth/key';
-	import { onMount } from 'svelte';
-  
-	let playlistVideos: { videoId: string }[] = [];
-	let churchReels: string[] = [
-	  'https://www.facebook.com/reel/1540221803185787',
-	  'https://www.facebook.com/reel/1201671043674926',
-	  'https://www.facebook.com/reel/163908496359124',
-	  'https://www.facebook.com/reel/1392526778231644',
-	  'https://www.facebook.com/reel/552959363519904'
-	];
-	let selectedVideo: string | null = null;
-	const playlistId = 'PLUhJyvkLp-rOWUDtYfsacytiHts2TV2mY';
-  
-	// Fetch videos from the specified playlist
-	async function fetchPlaylistVideos() {
-	  try {
-		const response = await fetch(
-		  `https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=12`
-		);
-  
-		if (!response.ok) {
-		  throw new Error('Failed to fetch playlist videos');
-		}
-  
-		const data: any = await response.json();
-  
-		if (data.items?.length > 0) {
-		  playlistVideos = data.items.map((item: any) => ({
-			videoId: item.snippet.resourceId.videoId
-		  }));
-		}
-	  } catch (error) {
-		console.error('Error fetching playlist videos:', error);
-	  }
-	}
-  
-	// Fetch playlist videos when the component mounts
-	onMount(fetchPlaylistVideos);
-  
-	function openVideo(videoId: string) {
-	  selectedVideo = videoId;
-	}
-  </script> -->
-
 <script lang="ts">
 	import { API_KEY as apiKey } from '$lib/auth/key';
 	import { onMount } from 'svelte';
 
-	let playlistVideos: { videoId: string }[] = [];
+	let playlistVideosChurch: { videoId: string }[] = [];
 	let churchReels: string[] = [
 		'https://www.facebook.com/reel/1540221803185787',
 		'https://www.facebook.com/reel/1201671043674926',
@@ -60,13 +14,13 @@
 	const playlistId = 'PLUhJyvkLp-rOWUDtYfsacytiHts2TV2mY';
 
 	// Function to fetch playlist videos from the API
-	async function fetchPlaylistVideos() {
+	async function fetchplaylistVideosChurch() {
 		try {
 			// Check if playlist videos are already stored in local storage
-			const cachedPlaylistVideos = localStorage.getItem('cachedPlaylistVideos');
+			const cachedplaylistVideosChurch = localStorage.getItem('cachedplaylistVideosChurch');
 
-			if (cachedPlaylistVideos) {
-				playlistVideos = JSON.parse(cachedPlaylistVideos);
+			if (cachedplaylistVideosChurch) {
+				playlistVideosChurch = JSON.parse(cachedplaylistVideosChurch);
 			} else {
 				// Fetch playlist videos from the API
 				const response = await fetch(
@@ -80,12 +34,12 @@
 				const data: any = await response.json();
 
 				if (data.items?.length > 0) {
-					playlistVideos = data.items.map((item: any) => ({
+					playlistVideosChurch = data.items.map((item: any) => ({
 						videoId: item.snippet.resourceId.videoId
 					}));
 
 					// Store playlist videos in local storage for caching
-					localStorage.setItem('cachedPlaylistVideos', JSON.stringify(playlistVideos));
+					localStorage.setItem('cachedplaylistVideosChurch', JSON.stringify(playlistVideosChurch));
 				}
 			}
 		} catch (error) {
@@ -103,7 +57,7 @@
 
 	// Fetch playlist videos and Facebook reels when the component mounts
 	onMount(() => {
-		fetchPlaylistVideos();
+		fetchplaylistVideosChurch();
 		fetchCachedChurchReels();
 	});
 
@@ -118,13 +72,13 @@
 	Christian and Missionary Alliance Church, Church of God &amp; Philadelphia Full Gospel Assembly.
 </p>
 
-<h1 class="font-semibold p-4 md:p-12 text-bgc text-xl md:text-2xl text-center">
+<h1 class="font-semibold uppercase p-4 md:p-12 text-bgc text-xl text-center">
 	Church | Benson Thomas
 </h1>
 
 <div class="flex flex-wrap justify-center mx-4 mb-4 lg:mx-24">
-	{#if playlistVideos.length > 0}
-		{#each playlistVideos as video}
+	{#if playlistVideosChurch.length > 0}
+		{#each playlistVideosChurch as video}
 			<div class="m-2 w-auto h-auto md:w-80">
 				<div class="relative">
 					<img
@@ -141,7 +95,7 @@
 	{/if}
 </div>
 
-<h1 class="font-semibold p-4 md:p-12 text-bgc text-xl md:text-2xl text-center">
+<h1 class="font-semibold uppercase p-4 md:p-12 text-bgc text-xl text-center">
 	Church Fellowship Ministry [Reels]
 </h1>
 

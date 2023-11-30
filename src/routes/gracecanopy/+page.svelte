@@ -2,7 +2,7 @@
 	import { API_KEY as apiKey } from '$lib/auth/key';
 	import { onMount } from 'svelte';
 
-	let playlistVideos: { videoId: string }[] = [];
+	let playlistVideosGraceCanopy: { videoId: string }[] = [];
 	let instagramPosts: string[] = [
 		'https://www.instagram.com/p/B-Xpa7Fh43c/',
 		'https://www.instagram.com/p/CAjVwmQBisi/'
@@ -12,12 +12,12 @@
 	const playlistId = 'PLI1cvwejI5Sth63AUaRXTlfPtt59o2Jwt';
 
 	// Fetch videos from the specified playlist
-	async function fetchPlaylistVideos() {
+	async function fetchplaylistVideosGraceCanopy() {
 		try {
-			const cachedVideos = localStorage.getItem('cachedPlaylistVideos');
+			const cachedVideos = localStorage.getItem('cachedplaylistVideosGraceCanopy');
 
 			if (cachedVideos) {
-				playlistVideos = JSON.parse(cachedVideos);
+				playlistVideosGraceCanopy = JSON.parse(cachedVideos);
 			} else {
 				const response = await fetch(
 					`https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=12`
@@ -30,12 +30,15 @@
 				const data: any = await response.json();
 
 				if (data.items?.length > 0) {
-					playlistVideos = data.items.map((item: any) => ({
+					playlistVideosGraceCanopy = data.items.map((item: any) => ({
 						videoId: item.snippet.resourceId.videoId
 					}));
 
 					// Store playlist videos in local storage for caching
-					localStorage.setItem('cachedPlaylistVideos', JSON.stringify(playlistVideos));
+					localStorage.setItem(
+						'cachedplaylistVideosGraceCanopy',
+						JSON.stringify(playlistVideosGraceCanopy)
+					);
 				}
 			}
 		} catch (error) {
@@ -44,7 +47,7 @@
 	}
 
 	// Fetch playlist videos when the component mounts
-	onMount(fetchPlaylistVideos);
+	onMount(fetchplaylistVideosGraceCanopy);
 
 	function openVideo(videoId: string) {
 		selectedVideo = videoId;
@@ -62,13 +65,13 @@
 	maxime, accusamus praesentium reprehenderit quod.
 </p>
 
-<h1 class="font-semibold uppercase p-4 md:p-12 text-bgc text-xl md:text-2xl text-center">
+<h1 class="font-semibold uppercase p-4 md:p-12 text-bgc text-xl text-center">
 	Church | Benson Thomas
 </h1>
 
 <div class="flex flex-wrap justify-center mx-4 mb-4 lg:mx-24">
-	{#if playlistVideos.length > 0}
-		{#each playlistVideos as video}
+	{#if playlistVideosGraceCanopy.length > 0}
+		{#each playlistVideosGraceCanopy as video}
 			<div class="m-2 w-auto h-auto md:w-80">
 				<div class="relative">
 					<img
@@ -118,9 +121,7 @@
 	</div>
 {/if}
 
-<h1 class="font-semibold uppercase p-4 md:p-12 text-bgc text-xl md:text-2xl text-center">
-	Instagram Posts
-</h1>
+<h1 class="font-semibold uppercase p-4 md:p-12 text-bgc text-xl text-center">Instagram Posts</h1>
 
 <div class="flex flex-wrap justify-evenly mx-4 mb-4 lg:mx-24">
 	{#each instagramPosts as post}
