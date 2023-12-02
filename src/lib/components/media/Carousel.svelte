@@ -39,7 +39,7 @@
 </script>
 
 <div class="flex flex-col justify-center items-center overflow-hidden mb-12 mt-8">
-	<h1 class="text-gray-600 uppercase mx-auto my-2 text-xl font-medium">
+	<h1 class="text-gray-600 uppercase mx-auto my-2 text-xl font-medium text-center">
 		{playlist.playlistTitle}
 	</h1>
 	<Splide
