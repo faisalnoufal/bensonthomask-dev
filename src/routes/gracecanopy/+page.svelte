@@ -12,7 +12,7 @@
 	const playlistId = 'PLI1cvwejI5Sth63AUaRXTlfPtt59o2Jwt';
 
 	// Fetch videos from the specified playlist
-	async function fetchplaylistVideosGraceCanopy() {
+	async function fetchPlaylistVideosGraceCanopy() {
 		try {
 			const cachedVideos = localStorage.getItem('cachedplaylistVideosGraceCanopy');
 
@@ -23,22 +23,22 @@
 					`https://www.googleapis.com/youtube/v3/playlistItems?key=${apiKey}&playlistId=${playlistId}&part=snippet&maxResults=12`
 				);
 
-				if (!response.ok) {
+				if (response.ok) {
+					const data: any = await response.json();
+
+					if (data.items?.length > 0) {
+						playlistVideosGraceCanopy = data.items.map((item: any) => ({
+							videoId: item.snippet.resourceId.videoId
+						}));
+
+						// Store playlist videos in local storage for caching
+						localStorage.setItem(
+							'cachedplaylistVideosGraceCanopy',
+							JSON.stringify(playlistVideosGraceCanopy)
+						);
+					}
+				} else {
 					throw new Error('Failed to fetch playlist videos');
-				}
-
-				const data: any = await response.json();
-
-				if (data.items?.length > 0) {
-					playlistVideosGraceCanopy = data.items.map((item: any) => ({
-						videoId: item.snippet.resourceId.videoId
-					}));
-
-					// Store playlist videos in local storage for caching
-					localStorage.setItem(
-						'cachedplaylistVideosGraceCanopy',
-						JSON.stringify(playlistVideosGraceCanopy)
-					);
 				}
 			}
 		} catch (error) {
@@ -47,7 +47,19 @@
 	}
 
 	// Fetch playlist videos when the component mounts
-	onMount(fetchplaylistVideosGraceCanopy);
+	onMount(() => {
+		fetchPlaylistVideosGraceCanopy();
+
+		// Dynamically add Instagram embed script to the document body
+		const script = document.createElement('script');
+		script.src = 'https://www.instagram.com/embed.js';
+		script.async = true;
+		document.body.appendChild(script);
+
+		return () => {
+			document.body.removeChild(script);
+		};
+	});
 
 	function openVideo(videoId: string) {
 		selectedVideo = videoId;
@@ -58,14 +70,14 @@
 	<title>Grace Canopy | Benson Thomas</title>
 </svelte:head>
 
-<h1 class="my-10 text-2xl md:text-4xl text-bgc font-bold text-center">Gracecanopy</h1>
-<p class="w-5/6 md:w-1/2 text-sm -mt-5 text-bgc/80 mb-10 text-center mx-auto">
+<h1 class="my-10 text-2xl md:text-4xl text-gray-600 font-bold text-center">Gracecanopy</h1>
+<p class="w-5/6 md:w-1/2 text-sm -mt-5 text-gray-600/80 mb-10 text-center mx-auto">
 	Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere voluptate eaque, illum est
 	tempore asperiores ipsa odio! Quia blanditiis, ut dolore beatae accusantium, laboriosam fugiat
 	maxime, accusamus praesentium reprehenderit quod.
 </p>
 
-<h1 class="font-semibold uppercase p-4 md:p-12 text-bgc text-xl text-center">
+<h1 class="font-medium uppercase p-4 md:p-12 text-gray-600 text-xl text-center">
 	Church | Benson Thomas
 </h1>
 
@@ -121,7 +133,7 @@
 	</div>
 {/if}
 
-<h1 class="font-semibold uppercase p-4 md:p-12 text-bgc text-xl text-center">Instagram Posts</h1>
+<h1 class="font-medium uppercase p-4 md:p-12 text-gray-600 text-xl text-center">Instagram Posts</h1>
 
 <div class="flex flex-wrap justify-evenly mx-4 mb-4 lg:mx-24">
 	{#each instagramPosts as post}
@@ -133,18 +145,3 @@
 		/>
 	{/each}
 </div>
-
-<!-- <div class="flex flex-wrap justify-evenly mx-4 mb-4 lg:mx-24">
-	<blockquote
-		class="instagram-media aspect-auto m-2 md:w-[24rem] mx-auto"
-		data-instgrm-permalink="https://www.instagram.com/p/B-Xpa7Fh43c/"
-		data-instgrm-version="13"
-		style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"
-	/>
-	<blockquote
-		class="instagram-media aspect-auto m-2 md:w-[24rem] mx-auto"
-		data-instgrm-permalink="https://www.instagram.com/p/CAjVwmQBisi/"
-		data-instgrm-version="13"
-		style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"
-	/>
-</div> -->

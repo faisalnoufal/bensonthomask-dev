@@ -20,9 +20,11 @@
 
 <div class="h-full">
 	<!-- <PageHeader {title} {description} {bgImg} {bgColor} blendBg /> -->
-	<h1 class="my-10 text-2xl md:text-4xl text-bgc font-bold text-center">About Me</h1>
-	<p class="w-5/6 md:w-1/2 text-sm -mt-5 text-bgc/80 mb-60 text-center mx-auto">
-		Hi, I'm Benson Thomas, a Christian YouTuber with over 200,000 subscribers. I create videos about my faith, life, and family. I'm passionate about sharing my faith in a relatable and down-to-earth way. I also love to make people laugh and inspire them through my videos forever.
+	<h1 class="my-10 text-2xl md:text-4xl text-gray-600 font-bold text-center">About Me</h1>
+
+	<p class="w-5/6 md:w-1/2 text-sm -mt-5 text-gray-600/80 mb-60 text-center mx-auto">
+		Hi, I'm Benson Thomas, a Christian YouTuber with over 200,000 subscribers. I create videos about
+		my faith, life, and family. I'm passionate about sharing my faith in a relatable and
+		down-to-earth way. I also love to make people laugh and inspire them through my videos forever.
 	</p>
 </div>
-

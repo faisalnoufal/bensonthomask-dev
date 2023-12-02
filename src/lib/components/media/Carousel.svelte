@@ -38,8 +38,8 @@
 	};
 </script>
 
-<div class="flex flex-col justify-center items-center overflow-hidden mb-12">
-	<h1 class="text-bgc uppercase mx-auto my-2 text-xl font-semibold font-sans">
+<div class="flex flex-col justify-center items-center overflow-hidden mb-12 mt-8">
+	<h1 class="text-gray-600 uppercase mx-auto my-2 text-xl font-medium">
 		{playlist.playlistTitle}
 	</h1>
 	<Splide

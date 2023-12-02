@@ -40,7 +40,7 @@
 	<div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
 		<div class="flex justify-center items-center">
 			<img src={Logo} class="w-10 md:w-14 h-full rounded-lg" alt="logo" />
-			<span class="m-3 font-bold md:text-2xl">Benson Thomas K</span>
+			<span class="m-3 font-medium md:text-2xl text-gray-600">Benson Thomas K</span>
 		</div>
 
 		<p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500">
@@ -51,7 +51,7 @@
 		<ul class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
 			{#each navItems as item}
 				<li>
-					<a class="text-gray-700 transition hover:text-gray-700/75" href={item.endpoint}>
+					<a class="text-gray-600 transition hover:text-gray-600/75" href={item.endpoint}>
 						{item.name}
 					</a>
 				</li>
@@ -64,7 +64,7 @@
 					href="/"
 					rel="noreferrer"
 					target="_blank"
-					class="text-gray-700 transition hover:text-gray-700/75"
+					class="text-gray-600 transition hover:text-gray-600/75"
 				>
 					<span class="sr-only">Facebook</span>
 					<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -82,7 +82,7 @@
 					href="/"
 					rel="noreferrer"
 					target="_blank"
-					class="text-gray-700 transition hover:text-gray-700/75"
+					class="text-gray-600 transition hover:text-gray-600/75"
 				>
 					<span class="sr-only">Instagram</span>
 					<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -100,7 +100,7 @@
 					href="/"
 					rel="noreferrer"
 					target="_blank"
-					class="text-gray-700 transition hover:text-gray-700/75"
+					class="text-gray-600 transition hover:text-gray-600/75"
 				>
 					<span class="sr-only">Twitter</span>
 					<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -116,7 +116,7 @@
 					href="/"
 					rel="noreferrer"
 					target="_blank"
-					class="text-gray-700 transition hover:text-gray-700/75"
+					class="text-gray-600 transition hover:text-gray-600/75"
 				>
 					<span class="sr-only">GitHub</span>
 					<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -134,7 +134,7 @@
 					href="/"
 					rel="noreferrer"
 					target="_blank"
-					class="text-gray-700 transition hover:text-gray-700/75"
+					class="text-gray-600 transition hover:text-gray-600/75"
 				>
 					<span class="sr-only">Dribbble</span>
 					<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

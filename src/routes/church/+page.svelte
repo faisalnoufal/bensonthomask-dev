@@ -66,13 +66,13 @@
 	}
 </script>
 
-<h1 class="my-10 text-2xl md:text-4xl text-bgc font-bold text-center">Thanks Almighty!</h1>
-<p class="w-5/6 md:w-1/2 text-sm -mt-5 text-bgc/80 mb-10 text-center mx-auto">
+<h1 class="my-10 text-2xl md:text-4xl text-gray-600 font-bold text-center">Thanks Almighty!</h1>
+<p class="w-5/6 md:w-1/2 text-sm -mt-5 text-gray-600/80 mb-10 text-center mx-auto">
 	Thankful to the Almighty for the opportunity to be associated and have experienced worship in the
 	Christian and Missionary Alliance Church, Church of God &amp; Philadelphia Full Gospel Assembly.
 </p>
 
-<h1 class="font-semibold uppercase p-4 md:p-12 text-bgc text-xl text-center">
+<h1 class="font-medium uppercase p-4 md:p-12 text-gray-600 text-xl text-center">
 	Church | Benson Thomas
 </h1>
 
@@ -95,7 +95,7 @@
 	{/if}
 </div>
 
-<h1 class="font-semibold uppercase p-4 md:p-12 text-bgc text-xl text-center">
+<h1 class="font-medium uppercase p-4 md:p-12 text-gray-600 text-xl text-center">
 	Church Fellowship Ministry [Reels]
 </h1>
 

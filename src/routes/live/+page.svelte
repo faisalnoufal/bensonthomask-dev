@@ -46,7 +46,7 @@
 		{:else}
 			<!-- Display the default video if live is not available -->
 			<p
-				class="z-10 absolute uppercase top-0 text-lg font-semibold text-center text-bgc capitalize lg:text-xl"
+				class="z-10 absolute uppercase top-0 text-lg font-medium text-center text-gray-600 capitalize lg:text-xl mt-8"
 			>
 				No live stream is currently happening.
 			</p>

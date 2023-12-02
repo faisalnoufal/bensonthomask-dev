@@ -79,7 +79,7 @@
 	>
 		<button
 			aria-label="Close Video"
-			class="absolute top-4 right-4 p-2 bg-gray-700 text-white"
+			class="absolute top-4 right-4 p-2 bg-gray-600 text-white"
 			on:click={closeVideo}
 		>
 			<svg

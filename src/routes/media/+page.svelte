@@ -157,8 +157,6 @@
 	}
 </script>
 
-<!-- rest of the code remains unchanged -->
-
 <svelte:head>
 	<title>Media | Benson Thomas</title>
 </svelte:head>

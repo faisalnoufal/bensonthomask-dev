@@ -3,7 +3,6 @@
 	import Button from './Button.svelte';
 	import { Variant } from '$lib/types';
 	import { slide } from 'svelte/transition';
-	import { onMount } from 'svelte';
 
 	let hamburgerMenu = false;
 	let handleHamMenu = () => {
@@ -52,22 +51,9 @@
 		// Optionally, you can also close the hamburger menu here if needed
 		hamburgerMenu = false;
 	}
-
-	let isSticky = false;
-
-	function handleScroll() {
-		const scrollY = window.scrollY;
-		isSticky = scrollY > 0;
-	}
-
-	// Add an event listener for the scroll event
-	onMount(() => {
-		window.addEventListener('scroll', handleScroll);
-		return () => window.removeEventListener('scroll', handleScroll);
-	});
 </script>
 
-<header class="{isSticky ? 'sticky' : ''} bg-white shadow-md transition-all">
+<header class="bg-transparent">
 	<div class="mx-auto max-w-screen-xl py-2 px-4 sm:px-6 lg:px-8">
 		<div class="flex h-20 items-center justify-between">
 			<div class="md:flex md:items-center md:gap-12">
@@ -80,7 +66,7 @@
 						/>
 					</svg> -->
 					<!-- LOGO -->
-					<img src={Logo} class="w-24 h-full bg-black rounded-md" alt="bensonthomask" />
+					<img src={Logo} class="w-20 h-full" alt="bensonthomask" />
 				</a>
 			</div>
 
@@ -92,7 +78,7 @@
 								<a
 									class="{itemIndex === selectedNavItem
 										? 'text-gray-800'
-										: 'text-gray-400'} transition uppercase font-medium hover:text-gray-700"
+										: 'text-gray-400'} transition uppercase font-medium hover:text-gray-600"
 									href={item.endpoint}
 									on:click={() => selectNavItem(itemIndex)}
 								>
@@ -183,14 +169,3 @@
 		</div>
 	</div>
 </header>
-
-<style>
-	/* Your existing styles */
-
-	.sticky {
-		position: fixed;
-		top: 0;
-		width: 100%;
-		z-index: 1000; /* Adjust as needed */
-	}
-</style>
